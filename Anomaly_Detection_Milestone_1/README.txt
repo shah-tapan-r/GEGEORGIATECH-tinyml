@@ -16,3 +16,17 @@ When uploaded to the Adafruit board, this conducts inference on live acceleromet
 
 	⁃	utils.h/utils.c
 C and Header file containing useful functions for use in anomaly detection pipeline. Of primary use in this workflow is the calc_mae function that quickly calculates the mean absolute error between two arrays. Must be included in folder uploaded to Adafruit.
+
+Important note on necessary libraries:
+
+- Arduino:
+In order to run on Adafruit the following libraries must be installed in the Arduino IDE:
+	Board Packages:
+		1. Adafruit SAMD Boards (32-bits ARM Cortex-M0+ v.1.8.13
+		
+	Libraries:
+		1. Arduino_TensorFlowLite v.2.1.0-ALPHA
+		2. Adafruit TensorFlow Lite v.1.2.3
+		3. Adafruit LIS3DH v.1.2.3
+		4. Adafruit Arcada Library v.2.5.3
+		

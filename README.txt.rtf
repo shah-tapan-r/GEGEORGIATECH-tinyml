@@ -1,0 +1,53 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2638
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{hyphen\}}{\leveltext\leveltemplateid1\'01\uc0\u8259 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{hyphen\}}{\leveltext\leveltemplateid101\'01\uc0\u8259 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{hyphen\}}{\leveltext\leveltemplateid201\'01\uc0\u8259 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{hyphen\}}{\leveltext\leveltemplateid301\'01\uc0\u8259 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid4}
+{\list\listtemplateid5\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{hyphen\}}{\leveltext\leveltemplateid401\'01\uc0\u8259 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid5}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}{\listoverride\listid5\listoverridecount0\ls5}}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab560
+\pard\pardeftab560\partightenfactor0
+
+\f0\fs26 \cf0 This folder contains all of the necessary files to deploy an accelerometer anomaly detection workflow to the Adafruit EdgeBadge.\
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 \
+\pard\pardeftab560\pardirnatural\partightenfactor0
+\ls1\ilvl0
+\fs24 \cf0 {\listtext	\uc0\u8259 	}
+\fs26 Milestone_1_Final.ipynb\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 Python file that imports necessary data and trains an autoencoder neural network. It then identifies an appropriate anomaly detection threshold and exports the trained model as a C header file. Instructions for running file are included in markdown cells. Should not run data collection cell unless new data must be created. Instead may run subsequent cells to import previously generated data from df.csv. Should not be included in folder uploaded to Adafruit.\
+\
+\pard\pardeftab560\pardirnatural\partightenfactor0
+\ls2\ilvl0
+\fs24 \cf0 {\listtext	\uc0\u8259 	}
+\fs26 df.csv\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 Training and test data obtained from Adafruit magic_wand example to be used in Milestone_1_Final.ipynb. Must be in the same working directory as Milestone_1_Final.ipynb.\
+\
+\
+\pard\pardeftab560\pardirnatural\partightenfactor0
+\ls3\ilvl0
+\fs24 \cf0 {\listtext	\uc0\u8259 	}
+\fs26 c_model.h\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 Header file containing the trained autoencoder. Must be included in folder uploaded to Adafruit.\
+\
+\pard\pardeftab560\pardirnatural\partightenfactor0
+\ls4\ilvl0
+\fs24 \cf0 {\listtext	\uc0\u8259 	}
+\fs26 Milestone_1_Final.ino\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 Arduino script responsible for the setup of the tinyml environment and the setup of the model.\
+When uploaded to the Adafruit board, this conducts inference on live accelerometer data and activates the piezo buzzer speaker when an anomaly is detected. Must be included in folder uploaded to Adafruit.\
+\
+\pard\pardeftab560\pardirnatural\partightenfactor0
+\ls5\ilvl0
+\fs24 \cf0 {\listtext	\uc0\u8259 	}
+\fs26 utils.h/utils.c\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 C and Header file containing useful functions for use in anomaly detection pipeline. Of primary use in this workflow is the calc_mae function that quickly calculates the mean absolute error between two arrays. Must be included in folder uploaded to Adafruit.}

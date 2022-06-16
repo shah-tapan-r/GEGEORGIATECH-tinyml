@@ -51,3 +51,6 @@ There are 3 sections:
 (https://github.com/tensorflow/tflite-micro/issues/280)
 - Input/Output int8 quantization had a significant accuracy drop.
 (https://github.com/tensorflow/tflite-micro/issues/396)
+
+![Screenshot](recap.png)
+

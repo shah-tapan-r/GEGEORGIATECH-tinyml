@@ -13,8 +13,8 @@ There are 4 sections:
 4. Results
 
 ## 0 - Upload Models directly to Arduino
-- Go to the folders cnn_fire_detect and cnn_fire_Detect_quant_io. Both models there have full integer quantization but only the second has input quantization, the first one doesn't.
-- Models are already in their respective folder so you can just go to either cnn_fire_detect(no input-output quantization) or to cnn_fire_Detect_quant_io(with input quantization) and upload the models to the arduino right away.
+- Go to the folders fruit_detect and fruit_Detect_quant_io. Both models there have full integer quantization but only the second has input quantization, the first one doesn't.
+- Models are already in their respective folder so you can just go to either fruit_detect(no input-output quantization) or tofruit_Detect_quant_io(with input quantization) and upload the models to the arduino right away.
 
 ## 1 - End to End walkthrough
 
@@ -41,21 +41,21 @@ There are 4 sections:
 
 #### Load Model to Arduino
 - All 4 approaches generate a model.h file which is necessary in order to upload the model to arduino. In order to get the model you need to copy it from TFLite_Models folder
-- On the next step you should put the model on the respective arduino folder. If you selected to quantize the input copy the model in the folder cnn_fire_Detect_quant_io. If you selected to not quantize the input the copy the model in the folder cnn_fire_detect.
+- On the next step you should put the model on the respective arduino folder. If you selected to quantize the input copy the model in the folder fruit_Detect_quant_io. If you selected to not quantize the input the copy the model in the folder fruit_detect.
 - Then all you have to do is to open the .ino file using the arduino IDE and just upload the model to the arduino device :).
 
 ***IMPORTANT***
-- If you wish to alter the code and create new models you will have to move them from the TFLITE_models folder to their respective arduino folder. Either cnn_fire_detect(no input-output quantization) or to cnn_fire_Detect_quant_io(with input quantization). From IDE all you have to do is to click upload(top left)
+- If you wish to alter the code and create new models you will have to move them from the TFLITE_models folder to their respective arduino folder. Either fruit_detect(no input-output quantization) or to fruit_Detect_quant_io(with input quantization). From IDE all you have to do is to click upload(top left)
 
 
 ## 2 - Observations
 
 - Even with small architectures, size restriction seems to set a great limitation for the performance
-- All 4 appraoches seem to result in great compression and accurasy preservesion. More experiments need to be performed in order to identify which is one performs best overall. The pruning and clustering methods can be further optimized by changing the hyperparameters
+- All 4 appraoches seem to result in great compression and accuracy preservesion. More experiments need to be performed in order to identify which is one performs best overall. The pruning and clustering methods can be further optimized by changing the hyperparameters
 - Only the full integer quantization methods with and without input quantization works
-- Our model had 73,041 parameters.
-- Average inference time in both cases and for all 4 appraoches for one observation on arduino was roughly 1.75 sec
-- Significant model size reduction, from roughly 300KB model size, quantizationS led to models of size roughly 86KB.
+- Our model had 74,088 parameters.
+- Average inference time in both cases and for all 4 appraoches for one observation on arduino was roughly 1.8 sec
+- Significant model size reduction, from roughly 300KB model size, quantizationS led to models of size roughly 88KB.
 - When uploaded, the models used roughly 50% of the FLASH memory and 90% of the SRAM memory. Should be noted that the size selected for tensor arena was 100*1024 Bytes/ 100KB, tensor arena is stored in SRAM. We can increase or decrease(x * 1024) the size of tensor arena to match the requirements of our model memory requirements as well as reduce the memory requirements.
 - Accuracy wise the original model and the optimized had similar performance. More details can be seen at the bottom of the readme
 
@@ -77,23 +77,25 @@ There are 4 sections:
 
 | Method  | Post Training Quantization | Test Accuracy  | Model Size in KB   | Fit Arduino Memory |
 | --------------------------------------------------------------------------------- | ---------- | -------------------- | ------------------------ | -------------- |
-| Quantization Aware   | Full Integer Without Input quantization        |    0.89      | 89                 | ✅             |
-| Quantization Aware   | Full Integer With Input quantization        |     0.88     |    88              | ✅             |
-| Quantization Aware   | None        |    0.89       | 600                 |              |
-| None   | Full Integer Without Input quantization        |    0.92       | 88                | ✅             |
-| None    | Full Integer With Input quantization        |     0.825     |         87         | ✅             |
-| None    | None        |     0.93       |            302      |           | 
-| Pruning   | Full Integer Without Input quantization        |  0.91        |       88           | ✅             |
-| Pruning    | Full Integer With Input quantization        |     0.9     |           87       | ✅             |
-| Pruning    | None       |   0.9       |       x           |             | 
-| Clustering   | Full Integer Without Input quantization        |   0.90       |    86             | ✅             |
-| Clustering    | Full Integer With Input quantization        |    0.89      |          85       | ✅             |
-| Clustering    | None       |  0.88        |        x          |             |
+| Quantization Aware   | Full Integer Without Input quantization        |    0.82      | 89.16                 | ✅             |
+| Quantization Aware   | Full Integer With Input quantization        |     0.82     |    88.87              | ✅             |
+| Quantization Aware   | None        |    0.84       | 603                 |              |
+| None   | Full Integer Without Input quantization        |    0.83       | 88.32                | ✅             |
+| None    | Full Integer With Input quantization        |     0.84     |         88.14         | ✅             |
+| None    | None        |     0.83       |            298      |           | 
+| Pruning   | Full Integer Without Input quantization        |  0.82        |       88.62           | ✅             |
+| Pruning    | Full Integer With Input quantization        |     0.82     |           88.14       | ✅             |
+| Pruning    | None       |   0.84      |       x           |             | 
+| Clustering   | Full Integer Without Input quantization        |   0.86       |    88.21             | ✅             |
+| Clustering    | Full Integer With Input quantization        |    0.84      |          88.05       | ✅             |
+| Clustering    | None       | 0.88        |        x          |             |
 
 ## 5 - Requirements
 
 tensorflow version == 2.8.2
+
 tensorflow.keras version == 2.8.0
+ 
 tensorflow_model_optimization version == 0.7.2
 
 arduino_tensorflowlite == 2.4.0-ALPHA

@@ -90,3 +90,12 @@ There are 4 sections:
 | Clustering    | Full Integer With Input quantization        |    0.855      |          86.4        | ✅             |
 | Clustering    | None       |  0.86        |        x          |             |
 
+## 5 - Requirements
+
+tensorflow version == 2.8.2
+
+tensorflow.keras version == 2.8.0
+ 
+tensorflow_model_optimization version == 0.7.2
+
+arduino_tensorflowlite == 2.4.0-ALPHA

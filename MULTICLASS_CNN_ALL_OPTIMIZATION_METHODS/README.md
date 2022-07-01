@@ -51,10 +51,10 @@ There are 4 sections:
 ## 2 - Observations
 
 - Even with small architectures, size restriction seems to set a great limitation for the performance
-- All 4 appraoches seem to result in great compression and accuracy preservesion. More experiments need to be performed in order to identify which is one performs best overall. The pruning and clustering methods can be further optimized by changing the hyperparameters
+- All 4 approaches seem to result in great compression and accuracy preservesion. More experiments need to be performed in order to identify which is one performs best overall. The pruning and clustering methods can be further optimized by changing the hyperparameters
 - Only the full integer quantization methods with and without input quantization works
 - Our model had 74,088 parameters.
-- Average inference time in both cases and for all 4 appraoches for one observation on arduino was roughly 1.8 sec
+- Average inference time in both cases and for all 4 approaches for one observation on arduino was roughly 1.8 sec
 - Significant model size reduction, from roughly 300KB model size, quantizationS led to models of size roughly 88KB.
 - When uploaded, the models used roughly 50% of the FLASH memory and 90% of the SRAM memory. Should be noted that the size selected for tensor arena was 100*1024 Bytes/ 100KB, tensor arena is stored in SRAM. We can increase or decrease(x * 1024) the size of tensor arena to match the requirements of our model memory requirements as well as reduce the memory requirements.
 - Accuracy wise the original model and the optimized had similar performance. More details can be seen at the bottom of the readme

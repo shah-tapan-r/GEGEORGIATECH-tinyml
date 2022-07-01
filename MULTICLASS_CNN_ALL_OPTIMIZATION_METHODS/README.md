@@ -1,5 +1,5 @@
-# Fire Detection with a Custom CNN in Arduino using TFLite
-The main goal of this project is to create a CNN Network and later deploy it on Arduino 33 BLE SENSE using TensorFlow Lite. The CNN can predict whether there is a fire or not in the image(Binary Classification). The code was created on Google Collab, thus making it easy to replicate. Essentially the only thing that needs to be changed is the folder path (but keeping the folder structure identical to the one on Github).
+# Fruit Detection with a Custom CNN in Arduino using TFLite
+The main goal of this project is to create a CNN Network and later deploy it on Arduino 33 BLE SENSE using TensorFlow Lite. The CNN can predict what type of fruit there is on the image(Multi-CLass problem). The code was created on Google Collab, thus making it easy to replicate. Essentially the only thing that needs to be changed is the folder path (but keeping the folder structure identical to the one on Github).
 
 ***IMPORTANT***
 - A few words about the arduino storage space, which will be useful later. Arduino has 1MB of flash memory and 256KB of SRAM. Flash memory is where the arduino sketch is stored, the model and all the constant variables are stored. SRAM is where the variables created by the sketch will be stored, as well as any dynamic variables such as the ones of tensor arena.
@@ -77,16 +77,23 @@ There are 4 sections:
 
 | Method  | Post Training Quantization | Test Accuracy  | Model Size in KB   | Fit Arduino Memory |
 | --------------------------------------------------------------------------------- | ---------- | -------------------- | ------------------------ | -------------- |
-| Quantization Aware   | Full Integer Without Input quantization        |    0.8       | 87.47                 | ✅             |
-| Quantization Aware   | Full Integer With Input quantization        |     0.8     |    87.18              | ✅             |
-| Quantization Aware   | None        |    0.8       | 591                 |              |
-| None   | Full Integer Without Input quantization        |    0.83       | 86.68                 | ✅             |
-| None    | Full Integer With Input quantization        |     0.825     |         86.51         | ✅             |
-| None    | None        |     0.83       |            291      |           | 
-| Pruning   | Full Integer Without Input quantization        |  0.82        |       87           | ✅             |
-| Pruning    | Full Integer With Input quantization        |     0.82     |           86.5       | ✅             |
-| Pruning    | None       |   0.84       |       x           |             | 
-| Clustering   | Full Integer Without Input quantization        |   0.86       |    86.6              | ✅             |
-| Clustering    | Full Integer With Input quantization        |    0.855      |          86.4        | ✅             |
-| Clustering    | None       |  0.86        |        x          |             |
+| Quantization Aware   | Full Integer Without Input quantization        |    0.89      | 89                 | ✅             |
+| Quantization Aware   | Full Integer With Input quantization        |     0.88     |    88              | ✅             |
+| Quantization Aware   | None        |    0.89       | 600                 |              |
+| None   | Full Integer Without Input quantization        |    0.92       | 88                | ✅             |
+| None    | Full Integer With Input quantization        |     0.825     |         87         | ✅             |
+| None    | None        |     0.93       |            302      |           | 
+| Pruning   | Full Integer Without Input quantization        |  0.91        |       88           | ✅             |
+| Pruning    | Full Integer With Input quantization        |     0.9     |           87       | ✅             |
+| Pruning    | None       |   0.9       |       x           |             | 
+| Clustering   | Full Integer Without Input quantization        |   0.90       |    86             | ✅             |
+| Clustering    | Full Integer With Input quantization        |    0.89      |          85       | ✅             |
+| Clustering    | None       |  0.88        |        x          |             |
 
+## 5 - Requirements
+
+tensorflow version == 2.8.2
+tensorflow.keras version == 2.8.0
+tensorflow_model_optimization version == 0.7.2
+
+arduino_tensorflowlite == 2.4.0-ALPHA

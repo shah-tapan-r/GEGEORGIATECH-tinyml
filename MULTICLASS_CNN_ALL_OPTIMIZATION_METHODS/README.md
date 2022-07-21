@@ -99,4 +99,4 @@ tensorflow.keras version == 2.8.0
  
 tensorflow_model_optimization version == 0.7.2
 
-arduino_tensorflowlite == 2.4.0-ALPHA
+arduino_tensorflowlite == 2.4.0-ALPHA 

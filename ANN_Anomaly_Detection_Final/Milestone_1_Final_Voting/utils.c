@@ -134,3 +134,13 @@ float calc_mae(const float *x, const float *x_hat, const int len) {
 
   return mae / len;
 }
+
+float sum_votes(const float *x, const int len) {
+  float count = 0;
+
+  for (int i = 0; i < len; i++) {
+    count += x[i];
+  }
+
+  return count;
+}

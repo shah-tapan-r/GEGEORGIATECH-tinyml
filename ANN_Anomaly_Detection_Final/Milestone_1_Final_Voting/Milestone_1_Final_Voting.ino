@@ -58,10 +58,11 @@ uint8_t sound_on = 1;     // start with sound on
 
 // Settings
 constexpr int NUM_AXES = 3;           // Number of axes on accelerometer
-constexpr int MAX_MEASUREMENTS = 16; // Number of samples to keep in each axis// Globals
+constexpr int MAX_MEASUREMENTS = 15; // Number of samples to keep in each axis// Globals
 constexpr float THRESHOLD = 0.13;    // Any MAE over this is an anomaly
 constexpr int WAIT_TIME = 0;       // ms between sample sets
 constexpr int SAMPLE_RATE = 25;      // How fast to collect measurements (Hz)
+constexpr int VOTE_THRESH = 8;      // Any number of votes greater than or equal to this value classifies the batch as anomalous
 
 //Initializing Accelerometer
 Adafruit_LIS3DH lis = Adafruit_LIS3DH(&Wire);
@@ -159,7 +160,8 @@ void loop() {
   float sample[MAX_MEASUREMENTS][NUM_AXES];
   float measurements[MAX_MEASUREMENTS];
   float y_val[NUM_AXES];
-  float mae;
+  float votes[MAX_MEASUREMENTS];
+  float mae[MAX_MEASUREMENTS];
   TfLiteStatus invoke_status;
   
   // Timestamps for collecting samples
@@ -225,7 +227,15 @@ for (int i = 0; i < MAX_MEASUREMENTS; i++) {
   }
 
   // Calculate MAE between given and predicted values
-  mae = calc_mae(sample[i], y_val, NUM_AXES);
+  mae[i] = calc_mae(sample[i], y_val, NUM_AXES);
+
+if (mae[i] >= THRESHOLD) {
+  votes[i] = 1;
+}
+
+if (mae[i] < THRESHOLD) {
+  votes[i] = 0;
+}
 
   // Print out result
 #if DEBUG
@@ -239,26 +249,31 @@ for (int i = 0; i < MAX_MEASUREMENTS; i++) {
   }
   Serial.println(); 
   Serial.print("MAE: "); 
-  Serial.println(mae, 7);
+  Serial.println(mae[i], 7);
 #endif
 
-  // Compare to threshold
-  if (mae > THRESHOLD) {
-    pinMode(sound_pin, OUTPUT);
-    beep(sound_pin,  880, 100);
-
-#if DEBUG
-    Serial.println("DANGER!!!");
-#endif
-  } else {
-  }
 #if DEBUG
   Serial.println();
 #endif
+
 }
+
+
+
+if (sum_votes(votes, MAX_MEASUREMENTS) >= VOTE_THRESH) {
+  pinMode(sound_pin, OUTPUT);
+  beep(sound_pin,  880, 100);
+}
+
   delay(WAIT_TIME);
 
 }
+
+//// Compare to threshold
+//  if (mae > THRESHOLD) {
+//    pinMode(sound_pin, OUTPUT);
+//    beep(sound_pin,  880, 100);
+//  }
 
 // A sound-producing function
 void beep(unsigned char speakerPin, int frequencyInHertz, long timeInMilliseconds) {

@@ -17,5 +17,6 @@ float mahalanobis(const float *x,
                   const float *inv_cov, 
                   int len);
 float calc_mae(const float *x, const float *x_hat, const int len);
+float sum_votes(const float *x, const int len);
 
 #endif //MD_UTILS_H
